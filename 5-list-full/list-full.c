@@ -156,7 +156,8 @@ static void list_full_exit(void)
 	 */
 	/* ... */
 
-	head.next->count = 6;
+	ti = list_entry(head.next, struct task_info, list);
+	atomic_set(&ti->count, 6);
 	task_info_remove_expired();
 	task_info_print_list("after removing expired");
 	task_info_purge_list();
