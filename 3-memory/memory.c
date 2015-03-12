@@ -28,7 +28,7 @@ static struct task_info *task_info_alloc(int pid)
 	/* TODO 2: Allocate and initialize ti. */
 	ti = kmalloc (sizeof(*ti), GFP_KERNEL);
 	ti->pid = pid;
-	ti->timestamp = 0;
+	ti->timestamp = jiffies;
 
 	return ti;
 }

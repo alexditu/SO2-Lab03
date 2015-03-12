@@ -29,7 +29,9 @@ static struct task_info *task_info_alloc(int pid)
 	struct task_info *ti;
 
 	/* TODO 0: Copy from 3-memory and 4-list. */
-
+	ti = kmalloc(sizeof(*ti), GFP_KERNEL);
+	ti->pid = pid;
+	ti->timestamp = jiffies;
 	atomic_set(&ti->count, 0);
 
 	return ti;
@@ -46,6 +48,13 @@ static struct task_info *task_info_find_pid(int pid)
 	struct task_info *ti;
 
 	/* TODO 1: Implement as in description. */
+	list_for_each(p, &head) {
+		ti = list_entry(p, struct task_info, list);
+		if (ti->pid == pid) {
+			return ti;
+		}
+	}
+	return NULL;
 }
 
 static void task_info_add_to_list(int pid)
@@ -62,15 +71,28 @@ static void task_info_add_to_list(int pid)
 	/* TODO 0: Allocate item and then add to list. */
 	/* Call task_info_alloc for allocation. */
 	/* Copy from 4-memmory. */
+	ti = task_info_alloc(pid);
+	list_add(&ti->list, &head);
 }
 
 static void task_info_add_for_current(void)
 {
 	/* TODO 0: Copy from 3-memory and 4-list. */
-	task_info_add_to_list(/* TODO */);
-	task_info_add_to_list(/* TODO */);
-	task_info_add_to_list(/* TODO */);
-	task_info_add_to_list(/* TODO */);
+	struct task_struct *t;
+
+	/* TODO 1: current PID */
+	task_info_add_to_list(current->pid);
+
+	/* TODO 1: parent PID */
+	task_info_add_to_list(current->parent->pid);
+
+	/* TODO 1: next process PID */
+	t = next_task(current);
+	task_info_add_to_list(t->pid);
+
+	/* TODO 1: next process of next process PID */
+	t = next_task(t);
+	task_info_add_to_list(t->pid);
 }
 
 static void task_info_print_list(const char *msg)
@@ -134,6 +156,7 @@ static void list_full_exit(void)
 	 */
 	/* ... */
 
+	head.next->count = 6;
 	task_info_remove_expired();
 	task_info_print_list("after removing expired");
 	task_info_purge_list();
