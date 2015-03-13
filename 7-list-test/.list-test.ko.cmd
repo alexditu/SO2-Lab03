@@ -1,0 +1,1 @@
+cmd_/home/student/so2/SO2-Lab03/7-list-test/list-test.ko := ld -r -m elf_i386 -T /home/student/so2/linux-3.13/scripts/module-common.lds --build-id  -o /home/student/so2/SO2-Lab03/7-list-test/list-test.ko /home/student/so2/SO2-Lab03/7-list-test/list-test.o /home/student/so2/SO2-Lab03/7-list-test/list-test.mod.o

@@ -1,0 +1,3 @@
+0x00000000	task_info_add_for_current	/home/student/so2/SO2-Lab03/6-list-sync/list-sync	EXPORT_SYMBOL
+0x00000000	task_info_remove_expired	/home/student/so2/SO2-Lab03/6-list-sync/list-sync	EXPORT_SYMBOL
+0x00000000	task_info_print_list	/home/student/so2/SO2-Lab03/6-list-sync/list-sync	EXPORT_SYMBOL

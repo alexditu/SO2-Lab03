@@ -1,0 +1,17 @@
+API: Semnaturi de func, Macrouri, SD, Tipuri de date, variabile globale
+
+Ce expune system call API:
+	open, pid_t (typedef), EFAULT (Macrouri), struct sockaddr
+
+
+Kernel API:
+	Expunem kernel modules sau componente de kernel
+	Ce expune kernelul: I/O, signals, IPC, multithreading, synchronization, mm (memory management)
+		liste, printing/logging, device drivere, block io, filesystem, intreruperi, networking, netfilter
+
+ofset_of (struct task_struct, mumu)
+
+((struct task_struct *))0->mumu
+
+container_of e wrapper peste ofset_of
+list_entry == container_of
